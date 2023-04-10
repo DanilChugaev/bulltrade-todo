@@ -1,6 +1,4 @@
-# vite-vue3-ts-template
-
-A boilerplate code for vue3 projects with typescript
+# TODO-приложение
 
 ## Contents
   - [Prerequisites](#prerequisites)
@@ -16,23 +14,12 @@ A boilerplate code for vue3 projects with typescript
 - [npm](http://npmjs.com)
 - [Node.js](https://nodejs.org/en/download/)
 
-## Features
-
-Here's an overview of the included main tools
-
-- **[Vite](https://vitejs.dev)** - Next Generation Frontend Tooling
-- **[Typescript](https://www.typescriptlang.org)** - superset of JavaScript which primarily provides optional static typing, classes and interfaces
-- **[ESLint](https://eslint.org)** - the pluggable linting utility
-- **[Stylus](https://stylus-lang.com)** - is a revolutionary new language, providing an efficient, dynamic, and expressive way to generate CSS
-- **[Jest](https://jestjs.io)** - is a delightful JavaScript Testing Framework with a focus on simplicity
-- **[Husky](https://typicode.github.io/husky/#/)** - modern native Git hooks made easy
-
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone git@github.com:DanilChugaev/vite-vue3-ts-template.git my-project
+  git clone git@github.com:DanilChugaev/bulltrade-todo.git my-project
 ```
 
 Go to the project directory

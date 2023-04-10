@@ -30,7 +30,6 @@
         <template #item="{element}">
           <todo-item
             :todo="element"
-            :title="element.fullText"
             @onDelete="deleteTodo"
             @onComplete="completeTodo"
             @onEdit="editTodo"

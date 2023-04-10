@@ -14,4 +14,9 @@ export default defineConfig({
     plugins: [
         vue(),
     ],
+    // @ts-ignore
+    test: {
+        globals: true,
+        environment: 'happy-dom',
+    },
 });

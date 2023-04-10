@@ -7,6 +7,7 @@
     >
         <div
             class="todo-item__text"
+            :title="todo.fullText"
             @click="editTodo"
         >
             {{ todo.text }}
@@ -14,11 +15,13 @@
 
         <div class="todo-item__actions">
             <ui-button
+                class="todo-item__delete"
                 @click="deleteTodo"
             >
                 Удалить
             </ui-button>
             <ui-button
+                class="todo-item__complete"
                 @click="completeTodo"
                 :disabled="todo.done"
             >

@@ -19,23 +19,33 @@
     </div>
 
     <todo-container class="index__todo-container">
-        <todo-item
-          v-for="item in todoList"
-          :key="item.id"
-          :todo="item"
-          :title="item.fullText"
-          @onDelete="deleteTodo"
-          @onComplete="completeTodo"
-          @onEdit="editTodo"
-        />
+      <draggable
+        :model-value="todoList"
+        @update:model-value="setTodoList"
+        group="people" 
+        @start="drag=true" 
+        @end="drag=false" 
+        item-key="id"
+      >
+        <template #item="{element}">
+          <todo-item
+            :todo="element"
+            :title="element.fullText"
+            @onDelete="deleteTodo"
+            @onComplete="completeTodo"
+            @onEdit="editTodo"
+          />
+        </template>
+      </draggable>
     </todo-container>
   </div>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import Draggable from 'vuedraggable';
 
 import UiInput from '~/components/ui-input.vue';
 import UiButton from '~/components/ui-button.vue';
@@ -52,15 +62,18 @@ export default {
     UiButton,
     TodoContainer,
     TodoItem,
+    Draggable,
   },
 
   setup() {
     const store = useStore();
     const router = useRouter();
+    const drag = ref(false);
 
     const fullText = computed(() => store.state.fullText);
     const todoList = computed(() => store.state.todoList);
     const setFullText = (fullText) => store.commit('setFullText', fullText);
+    const setTodoList = (todoList) => store.commit('setTodoList', todoList);
     const addTodoToList = () => {
       if (fullText.value.length) {
         store.commit('addTodoToList');
@@ -78,6 +91,8 @@ export default {
       deleteTodo,
       completeTodo,
       editTodo,
+      setTodoList,
+      drag,
     };
   },
 };

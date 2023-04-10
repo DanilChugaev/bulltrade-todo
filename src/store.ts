@@ -24,6 +24,10 @@ const store = createStore({
       state.fullText = text;
     },
 
+    setTodoList(state, todoList: TodoItem[]) {
+      state.todoList = todoList;
+    },
+
     addTodoToList(state) {
       state.todoList.push({
         id: ++uniqueId,

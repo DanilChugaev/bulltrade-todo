@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import type { TodoItem } from './types';
+import { transformText } from './helpers';
 
 let uniqueId = 0;
 
@@ -7,24 +8,31 @@ let uniqueId = 0;
 const store = createStore({
   state () {
     return {
-      text: '',
+      fullText: '',
       todoList: [] as TodoItem[],
     };
   },
 
+  getters: {
+    getTodoById: (state) => (id: TodoItem['id']) => {
+      return state.todoList.find(item => item.id === Number(id));
+    }
+  },
+
   mutations: {
-    setText(state, text: TodoItem['text']) {
-      state.text = text;
+    setFullText(state, text: TodoItem['text']) {
+      state.fullText = text;
     },
 
     addTodoToList(state) {
       state.todoList.push({
         id: ++uniqueId,
-        text: state.text,
+        text: transformText(state.fullText),
+        fullText: state.fullText,
         done: false,
       });
 
-      state.text = '';
+      state.fullText = '';
     },
 
     deleteTodo(state, id: TodoItem['id']) {
@@ -36,8 +44,15 @@ const store = createStore({
         if (item.id === id) {
           item.done = true;
         }
+      });
+    },
 
-        return item;
+    editTodo(state, todo: Partial<TodoItem>) {
+      state.todoList.forEach(item => {
+        if (item.id === todo.id) {
+          item.text = transformText(todo.fullText as string);
+          item.fullText = todo.fullText as string;
+        }
       });
     },
   },

@@ -76,8 +76,8 @@ export default {
 
     &__text {
         display: inline-flex;
-        justify-content: flex-start;
         align-items: center;
+        text-align: start;
         width: 100%;
         height: var(--ui-height);
         padding-right: var(--spacer-mini);

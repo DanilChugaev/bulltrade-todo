@@ -9,9 +9,3 @@ export default {
     name: 'todo-container',
 };
 </script>
-
-<style scoped lang="scss">
-.todo-container {
-    
-}
-</style>

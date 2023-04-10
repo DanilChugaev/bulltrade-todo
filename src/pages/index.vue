@@ -4,13 +4,15 @@
 
     <div class="index__input-container">
       <ui-input
-        :model-value="text"
-        @update:model-value="setText"
+        v-focus
+        :model-value="fullText"
+        @keyup.enter="addTodoToList"
+        @update:model-value="setFullText"
         placeholder="введите новую задачу"
       />
       <ui-button
         @click="addTodoToList"
-        :disabled="Boolean(!text)"
+        :disabled="Boolean(!fullText)"
       >
         Создать задачу
       </ui-button>
@@ -21,6 +23,7 @@
           v-for="item in todoList"
           :key="item.id"
           :todo="item"
+          :title="item.fullText"
           @onDelete="deleteTodo"
           @onComplete="completeTodo"
           @onEdit="editTodo"
@@ -39,6 +42,8 @@ import UiButton from '~/components/ui-button.vue';
 import TodoContainer from '~/components/todo-container.vue';
 import TodoItem from '~/components/todo-item.vue';
 
+import { EDIT_URL } from '~/constants';
+
 export default {
   name: 'index',
 
@@ -53,18 +58,22 @@ export default {
     const store = useStore();
     const router = useRouter();
 
-    const text = computed(() => store.state.text);
+    const fullText = computed(() => store.state.fullText);
     const todoList = computed(() => store.state.todoList);
-    const setText = (text) => store.commit('setText', text);
-    const addTodoToList = () => store.commit('addTodoToList');
+    const setFullText = (fullText) => store.commit('setFullText', fullText);
+    const addTodoToList = () => {
+      if (fullText.value.length) {
+        store.commit('addTodoToList');
+      }
+    };
     const deleteTodo = (id) => store.commit('deleteTodo', id);
     const completeTodo = (id) => store.commit('completeTodo', id);
-    const editTodo = (id) => router.push(`/edit/${id}`);
+    const editTodo = (id) => router.push(`${EDIT_URL}/${id}`);
 
     return {
-      text,
+      fullText,
       todoList,
-      setText,
+      setFullText,
       addTodoToList,
       deleteTodo,
       completeTodo,

@@ -10,8 +10,8 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus">
-  .edit
-    background-color: lightgrey
-    padding: 40px
+<style scoped lang="scss">
+  .edit {
+    padding: var(--spacer-main);
+  }
 </style>

@@ -1,0 +1,22 @@
+@import "./variables.scss";
+
+html,
+body {
+    height: 100%;
+    color: var(--text-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, 'sans-serif';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin-top: calc(var(--spacer-main) * 3)
+}

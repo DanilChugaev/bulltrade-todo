@@ -28,7 +28,7 @@
         item-key="id"
       >
         <template #item="{element}">
-          <todo-item
+          <todo-item-component
             :todo="element"
             @onDelete="deleteTodo"
             @onComplete="completeTodo"
@@ -49,9 +49,10 @@ import Draggable from 'vuedraggable';
 import UiInput from '~/components/ui-input.vue';
 import UiButton from '~/components/ui-button.vue';
 import TodoContainer from '~/components/todo-container.vue';
-import TodoItem from '~/components/todo-item.vue';
+import TodoItemComponent from '~/components/todo-item.vue';
 
 import { EDIT_URL } from '~/constants';
+import type { TodoItem } from '~/types';
 
 export default {
   name: 'index',
@@ -60,7 +61,7 @@ export default {
     UiInput,
     UiButton,
     TodoContainer,
-    TodoItem,
+    TodoItemComponent,
     Draggable,
   },
 
@@ -71,16 +72,16 @@ export default {
 
     const fullText = computed(() => store.state.fullText);
     const todoList = computed(() => store.state.todoList);
-    const setFullText = (fullText) => store.commit('setFullText', fullText);
-    const setTodoList = (todoList) => store.commit('setTodoList', todoList);
+    const setFullText = (text: string) => store.commit('setFullText', text);
+    const setTodoList = (list: TodoItem[]) => store.commit('setTodoList', list);
     const addTodoToList = () => {
       if (fullText.value.length) {
         store.commit('addTodoToList');
       }
     };
-    const deleteTodo = (id) => store.commit('deleteTodo', id);
-    const completeTodo = (id) => store.commit('completeTodo', id);
-    const editTodo = (id) => router.push(`${EDIT_URL}/${id}`);
+    const deleteTodo = (id: number) => store.commit('deleteTodo', id);
+    const completeTodo = (id: number) => store.commit('completeTodo', id);
+    const editTodo = (id: number) => router.push(`${EDIT_URL}/${id}`);
 
     return {
       fullText,

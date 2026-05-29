@@ -32,11 +32,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import UiButton from '~/components/ui-button.vue';
 
 import { TodoItem } from '../types';
 
-export default {
+export default defineComponent({
     name: 'todo-item',
 
     components: {
@@ -45,7 +46,7 @@ export default {
 
     props: {
         todo: {
-            type: Object as TodoItem,
+            type: Object as PropType<TodoItem>,
             required: true,
         },
     },
@@ -60,8 +61,8 @@ export default {
             completeTodo,
             editTodo,
         };
-  },
-};
+    },
+});
 </script>
 
 <style scoped lang="scss">

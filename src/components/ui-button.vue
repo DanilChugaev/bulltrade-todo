@@ -9,12 +9,14 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'ui-button',
 
   props: {
     type: {
-        type: String,
+        type: String as () => 'button' | 'reset' | 'submit' | undefined,
         default: 'button',
     },
     disabled: {
@@ -22,7 +24,7 @@ export default {
         default: false,
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

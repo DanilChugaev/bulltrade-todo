@@ -15,8 +15,11 @@ export default {
     modelValue: [String, Number],
   },
 
-  setup(props, context) {
-    const updateInput = () => context.emit('update:modelValue', event.target.value);
+  setup(_props, context) {
+    const updateInput = (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      context.emit('update:modelValue', target.value);
+    };
 
     return {
         updateInput,

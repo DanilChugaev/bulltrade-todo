@@ -4,8 +4,8 @@ import Index from './pages/index.vue';
 import Edit from './pages/edit.vue';
 
 const routes = [
-  { path: '/', component: Index },
-  { path: '/edit/:id', component: Edit },
+  { path: '/bulltrade-todo/', component: Index },
+  { path: '/bulltrade-todo/edit/:id', component: Edit },
 ];
 
 const router = createRouter({
